@@ -1,0 +1,107 @@
+KẾT QUẢ KIỂM TRA BẢN LÀM LẠI
+3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+Cú pháp: 8/8 file Python hợp lệ.
+AST thực thi so với bản trước: không đổi.
+
+LỆNH: python -m unittest test_framework -v
+test_multiple_robots_move_one_at_a_time (test_framework.FrameworkTests.test_multiple_robots_move_one_at_a_time)
+Với mỗi successor, đếm robot đổi vị trí bằng zip; phải đúng 1. ... ok
+test_no_double_push (test_framework.FrameworkTests.test_no_double_push)
+Đặt hai thùng liền nhau; danh sách hành động không được có 0 right. ... ok
+test_obstacle_blocks_push (test_framework.FrameworkTests.test_obstacle_blocks_push)
+Đặt vật cản sau thùng; loại hành động đẩy phải. ... ok
+test_push_and_cost (test_framework.FrameworkTests.test_push_and_cost)
+Sinh bước 0 right, kiểm tra đạt đích, chi phí 1, parent trỏ đúng. ... ok
+test_robot_blocks_push (test_framework.FrameworkTests.test_robot_blocks_push)
+Đặt robot thứ hai sau thùng; robot đầu không được đẩy vào robot đó. ... ok
+test_state_key_and_storage (test_framework.FrameworkTests.test_state_key_and_storage)
+Kiểm tra khóa là tuple, dư ô đích vẫn thắng, bộ PROBLEMS có 20 bàn. ... ok
+test_validator_rejects_forgery (test_framework.FrameworkTests.test_validator_rejects_forgery)
+Thử nút đích giả không nối từ initial, rồi action sai, rồi parent tự trỏ. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.001s
+
+OK
+
+LỆNH: python demo_logic.py
+Các hành động hợp lệ: ['0 up', '0 right', '0 down']
+ACTION was START
+######
+#    #
+#a$. #
+#    #
+######
+
+ACTION was 0 right
+######
+#    #
+# a* #
+#    #
+######
+
+Đạt đích: True
+Số bước: 1
+Parent đúng: True
+Đầu vào giữ nguyên: True
+Kiểm tra: True Valid solution
+
+LỆNH: python autograder.py
+FAIL test_initial_goal
+E
+======================================================================
+ERROR: test_initial_goal (public_tests.PublicTests.test_initial_goal)
+Bàn đã giải ngay từ đầu: solve phải trả đường đi hợp lệ đến đích.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<thu_muc_du_an>/public_tests.py", line 34, in test_initial_goal
+    final = solution.solve(initial, timebound=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<thu_muc_du_an>/solution.py", line 23, in solve
+    raise NotImplementedError("Implement your Sokoban solver")
+NotImplementedError: Implement your Sokoban solver
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+FAIL test_one_box
+E
+======================================================================
+ERROR: test_one_box (public_tests.PublicTests.test_one_box)
+Gọi solve với ngân sách 120 giây trên bàn cần một lần đẩy.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<thu_muc_du_an>/public_tests.py", line 24, in test_one_box
+    final = solution.solve(initial, timebound=120)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<thu_muc_du_an>/solution.py", line 23, in solve
+    raise NotImplementedError("Implement your Sokoban solver")
+NotImplementedError: Implement your Sokoban solver
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
+FAIL test_zero_budget
+E
+======================================================================
+ERROR: test_zero_budget (public_tests.PublicTests.test_zero_budget)
+Bàn chưa giải và timebound=0: phải trả đúng False.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<thu_muc_du_an>/public_tests.py", line 42, in test_zero_budget
+    self.assertIs(solution.solve(simple_state(), timebound=0), False)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<thu_muc_du_an>/solution.py", line 23, in solve
+    raise NotImplementedError("Implement your Sokoban solver")
+NotImplementedError: Implement your Sokoban solver
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+
+Public feedback: 0/3. This is NOT the official grade.
+
+0/3 public test: do solve gốc chưa cài, không phải lỗi framework.
